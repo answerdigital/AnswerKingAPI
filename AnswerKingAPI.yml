@@ -1,0 +1,830 @@
+openapi: 3.0.1
+info:
+  title: Answer King API
+  version: v1
+paths:
+  /api/categories:
+    get:
+      tags:
+        - Categories
+      summary: Get all categories.
+      responses:
+        '200':
+          description: When all the categories have been returned.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Answer.King.Domain.Inventory.Category'
+    post:
+      tags:
+        - Categories
+      summary: Create a new category.
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Answer.King.Api.RequestModels.CategoryDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Answer.King.Api.RequestModels.CategoryDto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Answer.King.Api.RequestModels.CategoryDto'
+      responses:
+        '201':
+          description: When the category has been created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Answer.King.Domain.Inventory.Category'
+        '400':
+          description: When invalid parameters are provided.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: string
+  /api/categories/{id}:
+    get:
+      tags:
+        - Categories
+      summary: Get a single category.
+      parameters:
+        - name: id
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: When the category with the provided id has been found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Answer.King.Domain.Inventory.Category'
+        '404':
+          description: When the category with the given id does not exist
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails'
+    put:
+      tags:
+        - Categories
+      summary: Update an existing category.
+      parameters:
+        - name: id
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Answer.King.Api.RequestModels.CategoryDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Answer.King.Api.RequestModels.CategoryDto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Answer.King.Api.RequestModels.CategoryDto'
+      responses:
+        '200':
+          description: When the category has been updated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Answer.King.Domain.Inventory.Category'
+        '400':
+          description: When invalid parameters are provided.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: string
+        '404':
+          description: When the category with the given id does not exist.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails'
+    delete:
+      tags:
+        - Categories
+      summary: Retire an existing category.
+      parameters:
+        - name: id
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: When the category has been retired.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Answer.King.Domain.Inventory.Category'
+        '400':
+          description: When invalid parameters are provided.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: string
+        '404':
+          description: When the category with the given id does not exist.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails'
+  /api/categories/{id}/products:
+    get:
+      tags:
+        - Categories
+      summary: Get all products in a category.
+      parameters:
+        - name: id
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: When all the products have been returned.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Answer.King.Domain.Orders.Models.Product'
+        '404':
+          description: When the category with the given id does not exist.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails'
+  /api/orders:
+    get:
+      tags:
+        - Orders
+      summary: Get all orders.
+      responses:
+        '200':
+          description: When all the orders have been returned.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Answer.King.Domain.Orders.Order'
+    post:
+      tags:
+        - Orders
+      summary: Create a new order.
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Answer.King.Api.RequestModels.OrderDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Answer.King.Api.RequestModels.OrderDto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Answer.King.Api.RequestModels.OrderDto'
+      responses:
+        '201':
+          description: When the order has been created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Answer.King.Domain.Orders.Order'
+        '400':
+          description: When invalid parameters are provided.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: string
+  /api/orders/{id}:
+    get:
+      tags:
+        - Orders
+      summary: Get a single order.
+      parameters:
+        - name: id
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: When the order with the provided id has been found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Answer.King.Domain.Orders.Order'
+        '404':
+          description: When the order with the given id does not exist
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails'
+    put:
+      tags:
+        - Orders
+      summary: Update an existing order.
+      parameters:
+        - name: id
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Answer.King.Api.RequestModels.OrderDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Answer.King.Api.RequestModels.OrderDto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Answer.King.Api.RequestModels.OrderDto'
+      responses:
+        '200':
+          description: When the order has been updated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Answer.King.Domain.Orders.Order'
+        '400':
+          description: When invalid parameters are provided.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: string
+        '404':
+          description: When the order with the given id does not exist.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails'
+    delete:
+      tags:
+        - Orders
+      summary: Cancel an existind order.
+      parameters:
+        - name: id
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: When the order has been cancelled.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Answer.King.Domain.Orders.Order'
+        '404':
+          description: When the order with the given id does not exist.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails'
+  /api/payments:
+    get:
+      tags:
+        - Payments
+      summary: Gets all payments
+      responses:
+        '200':
+          description: When all the payments have been returned.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Answer.King.Domain.Repositories.Models.Payment'
+    post:
+      tags:
+        - Payments
+      summary: Create a new payment.
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Answer.King.Api.RequestModels.MakePayment'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Answer.King.Api.RequestModels.MakePayment'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Answer.King.Api.RequestModels.MakePayment'
+      responses:
+        '201':
+          description: When the payment has been created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Answer.King.Domain.Repositories.Models.Payment'
+        '400':
+          description: When invalid parameters are provided.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: string
+  /api/payments/{id}:
+    get:
+      tags:
+        - Payments
+      summary: Get a single payment.
+      parameters:
+        - name: id
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: When the payment with the provided id has been found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Answer.King.Domain.Repositories.Models.Payment'
+        '404':
+          description: When the payment with the given id does not exist
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails'
+  /api/payments/{id}/order:
+    get:
+      tags:
+        - Payments
+      summary: Get order for payment.
+      parameters:
+        - name: id
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: When the order has been returned.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Answer.King.Domain.Orders.Order'
+        '404':
+          description: When the payment with the given id does not exist.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails'
+  /api/products:
+    get:
+      tags:
+        - Products
+      summary: Get all products.
+      responses:
+        '200':
+          description: When all the products have been returned.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Answer.King.Domain.Repositories.Models.Product'
+    post:
+      tags:
+        - Products
+      summary: Create a new product.
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Answer.King.Api.RequestModels.ProductDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Answer.King.Api.RequestModels.ProductDto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Answer.King.Api.RequestModels.ProductDto'
+      responses:
+        '201':
+          description: When the product has been created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Answer.King.Domain.Repositories.Models.Product'
+        '400':
+          description: When invalid parameters are provided.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: string
+  /api/products/{id}:
+    get:
+      tags:
+        - Products
+      summary: Get a single product.
+      parameters:
+        - name: id
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: When the product with the provided id has been found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Answer.King.Domain.Repositories.Models.Product'
+        '404':
+          description: When the product with the given id does not exist
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails'
+    put:
+      tags:
+        - Products
+      summary: Update an existing product.
+      parameters:
+        - name: id
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Answer.King.Api.RequestModels.ProductDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Answer.King.Api.RequestModels.ProductDto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Answer.King.Api.RequestModels.ProductDto'
+      responses:
+        '200':
+          description: When the product has been updated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Answer.King.Domain.Repositories.Models.Product'
+        '400':
+          description: When invalid parameters are provided.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: string
+        '404':
+          description: When the product with the given id does not exist.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails'
+    delete:
+      tags:
+        - Products
+      summary: Retire an existing product.
+      parameters:
+        - name: id
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: When the product has been retired.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Answer.King.Domain.Repositories.Models.Product'
+        '404':
+          description: When the product with the given id does not exist.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails'
+components:
+  schemas:
+    Answer.King.Api.RequestModels.CategoryDto:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Answer.King.Api.RequestModels.CategoryId:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+      additionalProperties: false
+    Answer.King.Api.RequestModels.LineItemDto:
+      type: object
+      properties:
+        product:
+          $ref: '#/components/schemas/Answer.King.Api.RequestModels.ProductId'
+        quantity:
+          type: integer
+          format: int32
+      additionalProperties: false
+    Answer.King.Api.RequestModels.MakePayment:
+      type: object
+      properties:
+        amount:
+          type: number
+          format: double
+        orderId:
+          type: string
+          format: uuid
+      additionalProperties: false
+    Answer.King.Api.RequestModels.OrderDto:
+      type: object
+      properties:
+        lineItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Answer.King.Api.RequestModels.LineItemDto'
+          nullable: true
+      additionalProperties: false
+    Answer.King.Api.RequestModels.ProductDto:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        price:
+          type: number
+          format: double
+        category:
+          $ref: '#/components/schemas/Answer.King.Api.RequestModels.CategoryId'
+      additionalProperties: false
+    Answer.King.Api.RequestModels.ProductId:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+      additionalProperties: false
+    Answer.King.Domain.Inventory.Category:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        name:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        createdOn:
+          type: string
+          format: date-time
+          readOnly: true
+        lastUpdated:
+          type: string
+          format: date-time
+          readOnly: true
+        products:
+          type: array
+          items:
+            $ref: '#/components/schemas/Answer.King.Domain.Inventory.Models.ProductId'
+          nullable: true
+          readOnly: true
+        retired:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
+    Answer.King.Domain.Inventory.Models.ProductId:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+      additionalProperties: false
+    Answer.King.Domain.Orders.Models.Category:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Answer.King.Domain.Orders.Models.LineItem:
+      type: object
+      properties:
+        product:
+          $ref: '#/components/schemas/Answer.King.Domain.Orders.Models.Product'
+        quantity:
+          type: integer
+          format: int32
+          readOnly: true
+        subTotal:
+          type: number
+          format: double
+          readOnly: true
+      additionalProperties: false
+    Answer.King.Domain.Orders.Models.Product:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        price:
+          type: number
+          format: double
+        category:
+          $ref: '#/components/schemas/Answer.King.Domain.Orders.Models.Category'
+      additionalProperties: false
+    Answer.King.Domain.Orders.Order:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        createdOn:
+          type: string
+          format: date-time
+          readOnly: true
+        lastUpdated:
+          type: string
+          format: date-time
+          readOnly: true
+        orderStatus:
+          $ref: '#/components/schemas/Answer.King.Domain.Orders.OrderStatus'
+        orderTotal:
+          type: number
+          format: double
+          readOnly: true
+        lineItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/Answer.King.Domain.Orders.Models.LineItem'
+          nullable: true
+          readOnly: true
+      additionalProperties: false
+    Answer.King.Domain.Orders.OrderStatus:
+      enum:
+        - 0
+        - 1
+        - 2
+      type: integer
+      format: int32
+    Answer.King.Domain.Repositories.Models.Category:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Answer.King.Domain.Repositories.Models.Payment:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        orderId:
+          type: string
+          format: uuid
+        amount:
+          type: number
+          format: double
+        orderTotal:
+          type: number
+          format: double
+        change:
+          type: number
+          format: double
+          readOnly: true
+        date:
+          type: string
+          format: date-time
+          readOnly: true
+      additionalProperties: false
+    Answer.King.Domain.Repositories.Models.Product:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        name:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        price:
+          type: number
+          format: double
+        category:
+          $ref: '#/components/schemas/Answer.King.Domain.Repositories.Models.Category'
+        retired:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
+    Microsoft.AspNetCore.Mvc.ProblemDetails:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        status:
+          type: integer
+          format: int32
+          nullable: true
+        detail:
+          type: string
+          nullable: true
+        instance:
+          type: string
+          nullable: true
+      additionalProperties: {}
