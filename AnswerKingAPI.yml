@@ -6,7 +6,7 @@ paths:
   /api/categories:
     get:
       tags:
-        - Categories
+        - Inventory
       summary: Get all categories.
       responses:
         '200':
@@ -16,40 +16,40 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/AnswerKing.Inventory.Category'
+                  $ref: '#/components/schemas/Inventory.Category.Response'
     post:
       tags:
-        - Categories
+        - Inventory
       summary: Create a new category.
       requestBody:
         description: ''
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AnswerKing.RequestModels.CategoryDto'
+              $ref: '#/components/schemas/Category.Request'
           text/json:
             schema:
-              $ref: '#/components/schemas/AnswerKing.RequestModels.CategoryDto'
+              $ref: '#/components/schemas/Category.Request'
           application/*+json:
             schema:
-              $ref: '#/components/schemas/AnswerKing.RequestModels.CategoryDto'
+              $ref: '#/components/schemas/Category.Request'
       responses:
         '201':
           description: When the category has been created.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AnswerKing.Inventory.Category'
+                $ref: '#/components/schemas/Inventory.Category.Response'
         '400':
           description: When invalid parameters are provided.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AnswerKing.ValidationProblemDetails'
+                $ref: '#/components/schemas/ProblemDetails'
   /api/categories/{id}:
     get:
       tags:
-        - Categories
+        - Inventory
       summary: Get a single category.
       parameters:
         - name: id
@@ -65,16 +65,16 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AnswerKing.Inventory.Category'
+                $ref: '#/components/schemas/Inventory.Category.Response'
         '404':
           description: When the category with the given id does not exist
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AnswerKing.ProblemDetails'
+                $ref: '#/components/schemas/ProblemDetails'
     put:
       tags:
-        - Categories
+        - Inventory
       summary: Update an existing category.
       parameters:
         - name: id
@@ -89,35 +89,35 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AnswerKing.RequestModels.CategoryDto'
+              $ref: '#/components/schemas/Category.Request'
           text/json:
             schema:
-              $ref: '#/components/schemas/AnswerKing.RequestModels.CategoryDto'
+              $ref: '#/components/schemas/Category.Request'
           application/*+json:
             schema:
-              $ref: '#/components/schemas/AnswerKing.RequestModels.CategoryDto'
+              $ref: '#/components/schemas/Category.Request'
       responses:
         '200':
           description: When the category has been updated.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AnswerKing.Inventory.Category'
+                $ref: '#/components/schemas/Inventory.Category.Response'
         '400':
           description: When invalid parameters are provided.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AnswerKing.ValidationProblemDetails'
+                $ref: '#/components/schemas/ProblemDetails'
         '404':
           description: When the category with the given id does not exist.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AnswerKing.ProblemDetails'
+                $ref: '#/components/schemas/ProblemDetails'
     delete:
       tags:
-        - Categories
+        - Inventory
       summary: Retire an existing category.
       parameters:
         - name: id
@@ -133,29 +133,29 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AnswerKing.Inventory.Category'
+                $ref: '#/components/schemas/Inventory.Category.Response'
         '400':
           description: When invalid parameters are provided.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AnswerKing.ValidationProblemDetails'
+                $ref: '#/components/schemas/ProblemDetails'
         '404':
           description: When the category with the given id does not exist.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AnswerKing.ProblemDetails'
+                $ref: '#/components/schemas/ProblemDetails'
         '410':
           description: When the category with the given id is already retired.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AnswerKing.ProblemDetails'
+                $ref: '#/components/schemas/ProblemDetails'
   /api/categories/{id}/products:
     get:
       tags:
-        - Categories
+        - Inventory
       summary: Get all products in a category.
       parameters:
         - name: id
@@ -173,13 +173,13 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/AnswerKing.Orders.Product'
+                  $ref: '#/components/schemas/Inventory.Product.Response'
         '404':
           description: When the category with the given id does not exist.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AnswerKing.ProblemDetails'
+                $ref: '#/components/schemas/ProblemDetails'
   /api/orders:
     get:
       tags:
@@ -193,7 +193,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/AnswerKing.Orders.Order'
+                  $ref: '#/components/schemas/Orders.Order.Response'
     post:
       tags:
         - Orders
@@ -203,26 +203,26 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AnswerKing.RequestModels.OrderDto'
+              $ref: '#/components/schemas/Order.Request'
           text/json:
             schema:
-              $ref: '#/components/schemas/AnswerKing.RequestModels.OrderDto'
+              $ref: '#/components/schemas/Order.Request'
           application/*+json:
             schema:
-              $ref: '#/components/schemas/AnswerKing.RequestModels.OrderDto'
+              $ref: '#/components/schemas/Order.Request'
       responses:
         '201':
           description: When the order has been created.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AnswerKing.Orders.Order'
+                $ref: '#/components/schemas/Orders.Order.Response'
         '400':
           description: When invalid parameters are provided.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AnswerKing.ValidationProblemDetails'
+                $ref: '#/components/schemas/ProblemDetails'
   /api/orders/{id}:
     get:
       tags:
@@ -242,13 +242,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AnswerKing.Orders.Order'
+                $ref: '#/components/schemas/Orders.Order.Response'
         '404':
           description: When the order with the given id does not exist
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AnswerKing.ProblemDetails'
+                $ref: '#/components/schemas/ProblemDetails'
     put:
       tags:
         - Orders
@@ -266,32 +266,32 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AnswerKing.RequestModels.OrderDto'
+              $ref: '#/components/schemas/Order.Request'
           text/json:
             schema:
-              $ref: '#/components/schemas/AnswerKing.RequestModels.OrderDto'
+              $ref: '#/components/schemas/Order.Request'
           application/*+json:
             schema:
-              $ref: '#/components/schemas/AnswerKing.RequestModels.OrderDto'
+              $ref: '#/components/schemas/Order.Request'
       responses:
         '200':
           description: When the order has been updated.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AnswerKing.Orders.Order'
+                $ref: '#/components/schemas/Orders.Order.Response'
         '400':
           description: When invalid parameters are provided.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AnswerKing.ValidationProblemDetails'
+                $ref: '#/components/schemas/ProblemDetails'
         '404':
           description: When the order with the given id does not exist.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AnswerKing.ProblemDetails'
+                $ref: '#/components/schemas/ProblemDetails'
     delete:
       tags:
         - Orders
@@ -310,120 +310,23 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AnswerKing.Orders.Order'
+                $ref: '#/components/schemas/Orders.Order.Response'
         '400':
           description: When invalid parameters are provided.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AnswerKing.ValidationProblemDetails'
+                $ref: '#/components/schemas/ProblemDetails'
         '404':
           description: When the order with the given id does not exist.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AnswerKing.ProblemDetails'
-  /api/payments:
-    get:
-      tags:
-        - Payments
-      summary: Gets all payments
-      responses:
-        '200':
-          description: When all the payments have been returned.
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/AnswerKing.Entity.Payment'
-    post:
-      tags:
-        - Payments
-      summary: Create a new payment.
-      requestBody:
-        description: ''
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/AnswerKing.RequestModels.MakePayment'
-          text/json:
-            schema:
-              $ref: '#/components/schemas/AnswerKing.RequestModels.MakePayment'
-          application/*+json:
-            schema:
-              $ref: '#/components/schemas/AnswerKing.RequestModels.MakePayment'
-      responses:
-        '201':
-          description: When the payment has been created.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AnswerKing.Entity.Payment'
-        '400':
-          description: When invalid parameters are provided.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AnswerKing.ValidationProblemDetails'
-  /api/payments/{id}:
-    get:
-      tags:
-        - Payments
-      summary: Get a single payment.
-      parameters:
-        - name: id
-          in: path
-          description: ''
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        '200':
-          description: When the payment with the provided id has been found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AnswerKing.Entity.Payment'
-        '404':
-          description: When the payment with the given id does not exist
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AnswerKing.ProblemDetails'
-  /api/payments/{id}/order:
-    get:
-      tags:
-        - Payments
-      summary: Get order for payment.
-      parameters:
-        - name: id
-          in: path
-          description: ''
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        '200':
-          description: When the order has been returned.
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/AnswerKing.Orders.Order'
-        '404':
-          description: When the payment with the given id does not exist.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AnswerKing.ProblemDetails'
+                $ref: '#/components/schemas/ProblemDetails'
   /api/products:
     get:
       tags:
-        - Products
+        - Inventory
       summary: Get all products.
       responses:
         '200':
@@ -433,40 +336,40 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/AnswerKing.Entity.Product'
+                  $ref: '#/components/schemas/Inventory.Product.Response'
     post:
       tags:
-        - Products
+        - Inventory
       summary: Create a new product.
       requestBody:
         description: ''
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AnswerKing.RequestModels.ProductDto'
+              $ref: '#/components/schemas/Product.Request'
           text/json:
             schema:
-              $ref: '#/components/schemas/AnswerKing.RequestModels.ProductDto'
+              $ref: '#/components/schemas/Product.Request'
           application/*+json:
             schema:
-              $ref: '#/components/schemas/AnswerKing.RequestModels.ProductDto'
+              $ref: '#/components/schemas/Product.Request'
       responses:
         '201':
           description: When the product has been created.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AnswerKing.Entity.Product'
+                $ref: '#/components/schemas/Inventory.Product.Response'
         '400':
           description: When invalid parameters are provided.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AnswerKing.ValidationProblemDetails'
+                $ref: '#/components/schemas/ProblemDetails'
   /api/products/{id}:
     get:
       tags:
-        - Products
+        - Inventory
       summary: Get a single product.
       parameters:
         - name: id
@@ -482,16 +385,16 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AnswerKing.Entity.Product'
+                $ref: '#/components/schemas/Inventory.Product.Response'
         '404':
           description: When the product with the given id does not exist
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AnswerKing.ProblemDetails'
+                $ref: '#/components/schemas/ProblemDetails'
     put:
       tags:
-        - Products
+        - Inventory
       summary: Update an existing product.
       parameters:
         - name: id
@@ -506,35 +409,35 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AnswerKing.RequestModels.ProductDto'
+              $ref: '#/components/schemas/Product.Request'
           text/json:
             schema:
-              $ref: '#/components/schemas/AnswerKing.RequestModels.ProductDto'
+              $ref: '#/components/schemas/Product.Request'
           application/*+json:
             schema:
-              $ref: '#/components/schemas/AnswerKing.RequestModels.ProductDto'
+              $ref: '#/components/schemas/Product.Request'
       responses:
         '200':
           description: When the product has been updated.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AnswerKing.Entity.Product'
+                $ref: '#/components/schemas/Inventory.Product.Response'
         '400':
           description: When invalid parameters are provided.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AnswerKing.ValidationProblemDetails'
+                $ref: '#/components/schemas/ProblemDetails'
         '404':
           description: When the product with the given id does not exist.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AnswerKing.ProblemDetails'
+                $ref: '#/components/schemas/ProblemDetails'
     delete:
       tags:
-        - Products
+        - Inventory
       summary: Retire an existing product.
       parameters:
         - name: id
@@ -550,82 +453,38 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AnswerKing.Entity.Product'
+                $ref: '#/components/schemas/Inventory.Product.Response'
         '404':
           description: When the product with the given id does not exist.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AnswerKing.ProblemDetails'
+                $ref: '#/components/schemas/ProblemDetails'
         '410':
           description: When the product with the given id is already retired.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AnswerKing.ProblemDetails'
+                $ref: '#/components/schemas/ProblemDetails'
 components:
   schemas:
-    AnswerKing.Entity.Category:
+    Category.Request:
       type: object
       properties:
-        id:
-          type: integer
-          format: int64
         name:
           type: string
           nullable: true
         description:
           type: string
           nullable: true
-      additionalProperties: false
-    AnswerKing.Entity.Payment:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-          readOnly: true
-        orderId:
-          type: integer
-          format: int64
-        amount:
-          type: number
-          format: double
-        orderTotal:
-          type: number
-          format: double
-        change:
-          type: number
-          format: double
-          readOnly: true
-        date:
-          type: string
-          format: date-time
-          readOnly: true
-      additionalProperties: false
-    AnswerKing.Entity.Product:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-          readOnly: true
-        name:
-          type: string
+        products:
+          type: array
+          items:
+            type: integer
+            format: int64
           nullable: true
-        description:
-          type: string
-          nullable: true
-        price:
-          type: number
-          format: double
-        category:
-          $ref: '#/components/schemas/AnswerKing.Entity.Category'
-        retired:
-          type: boolean
-          readOnly: true
       additionalProperties: false
-    AnswerKing.Inventory.Category:
+    Inventory.Category.Response:
       type: object
       properties:
         id:
@@ -649,21 +508,58 @@ components:
         products:
           type: array
           items:
-            $ref: '#/components/schemas/AnswerKing.Inventory.ProductId'
-          nullable: true
+            type: integer
+            format: int64
+            readOnly: true
           readOnly: true
         retired:
           type: boolean
           readOnly: true
       additionalProperties: false
-    AnswerKing.Inventory.ProductId:
+    Inventory.Product.Response:
       type: object
       properties:
         id:
           type: integer
           format: int64
+        name:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        price:
+          type: number
+          format: double
+        categories:
+          type: array
+          items:
+            type: integer
+            format: int64
+        retired:
+          type: boolean
+          readOnly: true
       additionalProperties: false
-    AnswerKing.Orders.Category:
+    LineItem.Request:
+      type: object
+      properties:
+        productId:
+          type: integer
+          format: int64
+        quantity:
+          type: integer
+          format: int32
+      additionalProperties: false
+    Order.Request:
+      type: object
+      properties:
+        lineItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineItem.Request'
+          nullable: true
+      additionalProperties: false
+    Orders.Category.Response:
       type: object
       properties:
         id:
@@ -676,11 +572,11 @@ components:
           type: string
           nullable: true
       additionalProperties: false
-    AnswerKing.Orders.LineItem:
+    Orders.LineItem.Response:
       type: object
       properties:
         product:
-          $ref: '#/components/schemas/AnswerKing.Orders.Product'
+          $ref: '#/components/schemas/Orders.Product.Response'
         quantity:
           type: integer
           format: int32
@@ -690,7 +586,7 @@ components:
           format: double
           readOnly: true
       additionalProperties: false
-    AnswerKing.Orders.Order:
+    Orders.Order.Response:
       type: object
       properties:
         id:
@@ -706,7 +602,7 @@ components:
           format: date-time
           readOnly: true
         orderStatus:
-          $ref: '#/components/schemas/AnswerKing.Orders.OrderStatus'
+          $ref: '#/components/schemas/Orders.OrderStatus.Response'
         orderTotal:
           type: number
           format: double
@@ -714,17 +610,17 @@ components:
         lineItems:
           type: array
           items:
-            $ref: '#/components/schemas/AnswerKing.Orders.LineItem'
+            $ref: '#/components/schemas/Orders.LineItem.Response'
           nullable: true
           readOnly: true
       additionalProperties: false
-    AnswerKing.Orders.OrderStatus:
+    Orders.OrderStatus.Response:
       enum:
         - created
         - complete
         - cancelled
       type: string
-    AnswerKing.Orders.Product:
+    Orders.Product.Response:
       type: object
       properties:
         id:
@@ -739,81 +635,49 @@ components:
         price:
           type: number
           format: double
-        category:
-          $ref: '#/components/schemas/AnswerKing.Orders.Category'
-      additionalProperties: false
-    AnswerKing.ProblemDetails:
-      type: object
-      properties:
-        type:
-          type: string
-          description: "A URI reference [RFC3986] that identifies the problem type. This specification encourages that, when\r\n            dereferenced, it provide human-readable documentation for the problem type\r\n            (e.g., using HTML [W3C.REC-html5-20141028]).  When this member is not present, its value is assumed to be\r\n            'about:blank'."
-        title:
-          type: string
-          description: "A short, human-readable summary of the problem type.It SHOULD NOT change from occurrence to occurrence\r\n            of the problem, except for purposes of localization(e.g., using proactive content negotiation;\r\n            see[RFC7231], Section 3.4)."
-        status:
-          type: integer
-          description: The HTTP status code([RFC7231], Section 6) generated by the origin server for this occurrence of the problem.
-          format: int32
-        detail:
-          type: string
-          description: A human-readable explanation specific to this occurrence of the problem.
-          nullable: true
-        instance:
-          type: string
-          description: A URI reference that identifies the specific occurrence of the problem. It may or may not yield further information if dereferenced.
-          nullable: true
-        traceId:
-          type: string
-          description: A unique identifier to represent this request in trace logs.
-      additionalProperties: {}
-      example: "{\r\n  \"type\": \"https://tools.ietf.org/html/rfc7231#section-6.5.4\",\r\n  \"title\": \"Not Found\",\r\n  \"status\": 404,\r\n  \"traceId\": \"00-a8e9d236fdfee89c8cdca00651758241-1fea62c8c664390b-00\"\r\n}"
-    AnswerKing.RequestModels.CategoryDto:
-      type: object
-      properties:
-        name:
-          type: string
-          nullable: true
-        description:
-          type: string
-          nullable: true
-      additionalProperties: false
-    AnswerKing.RequestModels.CategoryId:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-      additionalProperties: false
-    AnswerKing.RequestModels.LineItemDto:
-      type: object
-      properties:
-        product:
-          $ref: '#/components/schemas/AnswerKing.RequestModels.ProductId'
-        quantity:
-          type: integer
-          format: int32
-      additionalProperties: false
-    AnswerKing.RequestModels.MakePayment:
-      type: object
-      properties:
-        amount:
-          type: number
-          format: double
-        orderId:
-          type: integer
-          format: int64
-      additionalProperties: false
-    AnswerKing.RequestModels.OrderDto:
-      type: object
-      properties:
-        lineItems:
+        categories:
           type: array
           items:
-            $ref: '#/components/schemas/AnswerKing.RequestModels.LineItemDto'
+            $ref: '#/components/schemas/Orders.Category.Response'
           nullable: true
       additionalProperties: false
-    AnswerKing.RequestModels.ProductDto:
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type: string
+          description: "A URI reference [RFC3986] that identifies the problem type. This specification encourages that, when\r\n            dereferenced, it provide human-readable documentation for the problem type\r\n            (e.g., using HTML [W3C.REC-html5-20141028]).  When this member is not present, its value is assumed to be\r\n            'about:blank'."
+        title:
+          type: string
+          description: "A short, human-readable summary of the problem type.It SHOULD NOT change from occurrence to occurrence\r\n            of the problem, except for purposes of localization(e.g., using proactive content negotiation;\r\n            see[RFC7231], Section 3.4)."
+        status:
+          type: integer
+          description: >-
+            The HTTP status code([RFC7231], Section 6) generated by the origin
+            server for this occurrence of the problem.
+          format: int32
+        detail:
+          type: string
+          description: >-
+            A human-readable explanation specific to this occurrence of the
+            problem.
+          nullable: true
+        instance:
+          type: string
+          description: >-
+            A URI reference that identifies the specific occurrence of the
+            problem. It may or may not yield further information if
+            dereferenced.
+          nullable: true
+        errors:
+          description: The validation errors.
+          nullable: true
+        traceId:
+          type: string
+          description: A unique identifier to represent this request in trace logs.
+      additionalProperties: {}
+      example: "{\r\n  \"errors\": {\r\n    \"lineItems\": [\r\n      \"The lineItems field is required.\"\r\n    ]\r\n  },\r\n  \"type\": \"https://tools.ietf.org/html/rfc7231#section-6.5.1\",\r\n  \"title\": \"One or more validation errors occurred.\",\r\n  \"status\": 400,\r\n  \"traceId\": \"00-f40e09a437a87f4ebcd2f39b128bb8f3-4b2ad798ac046140-00\"\r\n}"
+    Product.Request:
       type: object
       properties:
         name:
@@ -825,47 +689,15 @@ components:
         price:
           type: number
           format: double
-        category:
-          $ref: '#/components/schemas/AnswerKing.RequestModels.CategoryId'
-      additionalProperties: false
-    AnswerKing.RequestModels.ProductId:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-      additionalProperties: false
-    AnswerKing.ValidationProblemDetails:
-      type: object
-      properties:
-        type:
-          type: string
-          description: "A URI reference [RFC3986] that identifies the problem type. This specification encourages that, when\r\n            dereferenced, it provide human-readable documentation for the problem type\r\n            (e.g., using HTML [W3C.REC-html5-20141028]).  When this member is not present, its value is assumed to be\r\n            'about:blank'."
-        title:
-          type: string
-          description: "A short, human-readable summary of the problem type.It SHOULD NOT change from occurrence to occurrence\r\n            of the problem, except for purposes of localization(e.g., using proactive content negotiation;\r\n            see[RFC7231], Section 3.4)."
-        status:
-          type: integer
-          description: The HTTP status code([RFC7231], Section 6) generated by the origin server for this occurrence of the problem.
-          format: int32
-        detail:
-          type: string
-          description: A human-readable explanation specific to this occurrence of the problem.
+        categories:
+          type: array
+          items:
+            type: integer
+            format: int64
           nullable: true
-        instance:
-          type: string
-          description: A URI reference that identifies the specific occurrence of the problem. It may or may not yield further information if dereferenced.
-          nullable: true
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
-          description: The validation errors.
-          readOnly: true
-        traceId:
-          type: string
-          description: A unique identifier to represent this request in trace logs.
-      additionalProperties: {}
-      example: "{\r\n  \"errors\": {\r\n    \"LineItems\": [\r\n      \"The LineItems field is required.\"\r\n    ]\r\n  },\r\n  \"type\": \"https://tools.ietf.org/html/rfc7231#section-6.5.1\",\r\n  \"title\": \"One or more validation errors occurred.\",\r\n  \"status\": 400,\r\n  \"traceId\": \"00-f40e09a437a87f4ebcd2f39b128bb8f3-4b2ad798ac046140-00\"\r\n}"
+      additionalProperties: false
+tags:
+  - name: Inventory
+    description: Manage the inventory.
+  - name: Orders
+    description: Create and manage customer orders.
