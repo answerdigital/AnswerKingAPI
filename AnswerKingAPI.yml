@@ -128,12 +128,8 @@ paths:
             type: integer
             format: int64
       responses:
-        '200':
-          description: When the category has been retired.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Inventory.Category.Response'
+        '204':
+          description: No Content.
         '400':
           description: When invalid parameters are provided.
           content:
@@ -305,12 +301,8 @@ paths:
             type: integer
             format: int64
       responses:
-        '200':
-          description: When the order has been cancelled.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Orders.Order.Response'
+        '204':
+          description: No Content.
         '400':
           description: When invalid parameters are provided.
           content:
@@ -448,12 +440,8 @@ paths:
             type: integer
             format: int64
       responses:
-        '200':
-          description: When the product has been retired.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Inventory.Product.Response'
+        '204':
+          description: No Content.
         '404':
           description: When the product with the given id does not exist.
           content:
