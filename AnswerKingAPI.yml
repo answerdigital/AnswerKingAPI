@@ -519,11 +519,9 @@ components:
         price:
           type: number
           format: double
-        categories:
-          type: array
-          items:
-            type: integer
-            format: int64
+        category:
+          type: string
+          nullable: false
         retired:
           type: boolean
           readOnly: true
