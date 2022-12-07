@@ -472,7 +472,7 @@ components:
             format: int64
           nullable: true
       additionalProperties: false
-    Inventory.Category.Response:
+    Inventory.SimpleCategory.Response:
       type: object
       properties:
         id:
@@ -485,6 +485,11 @@ components:
         description:
           type: string
           nullable: true
+    Inventory.Category.Response:
+      allOf:
+        - $ref: '#/components/schemas/Inventory.SimpleCategory.Response'
+      type: object
+      properties:
         createdOn:
           type: string
           format: date-time
@@ -519,11 +524,8 @@ components:
         price:
           type: number
           format: double
-        categories:
-          type: array
-          items:
-            type: integer
-            format: int64
+        category:
+          $ref: '#/components/schemas/Inventory.SimpleCategory.Response'
         retired:
           type: boolean
           readOnly: true
