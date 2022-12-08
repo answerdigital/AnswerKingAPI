@@ -2,6 +2,13 @@ openapi: 3.0.1
 info:
   title: Answer King API
   version: v1
+tags:
+  - name: Inventory
+    description: Manage the inventory.
+  - name: Orders
+    description: Create and manage customer orders.
+  - name: Tags
+    description: Create and manage tags.
 paths:
   /api/tags:
     post:
@@ -63,6 +70,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Tag.Response'
+        '404':
+          description: Tag with the given id does not exist
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
     put:
       tags:
         - Tags
@@ -80,6 +93,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Tag.Response'
+        '400':
+          description: Invalid parameters are provided.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: Tag with the given id does not exist.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
     delete:
       tags:
         - Tags
@@ -88,6 +113,24 @@ paths:
       responses:
         '204':
           description:  No Content
+        '400':
+          description: Invalid parameters are provided.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: Tag with the given id does not exist.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '410':
+          description: Tag with the given id is already retired.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
 
   /api/tags/{id}/products:
     parameters:
@@ -150,7 +193,7 @@ paths:
     delete:
       tags:
         - Tags
-      summary: Assign Tag To Products.
+      summary: Remove Tag From Products.
       operationId:  removeTagFromProducts
       parameters:
         - schema:
@@ -237,13 +280,13 @@ paths:
             format: int64
       responses:
         '200':
-          description: When the category with the provided id has been found.
+          description: Category with the provided id has been found.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Inventory.Category.Response'
         '404':
-          description: When the category with the given id does not exist
+          description: Category with the given id does not exist
           content:
             application/json:
               schema:
@@ -280,13 +323,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/Inventory.Category.Response'
         '400':
-          description: When invalid parameters are provided.
+          description: Invalid parameters are provided.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
         '404':
-          description: When the category with the given id does not exist.
+          description: Category with the given id does not exist.
           content:
             application/json:
               schema:
@@ -307,19 +350,19 @@ paths:
         '204':
           description: No Content.
         '400':
-          description: When invalid parameters are provided.
+          description: Invalid parameters are provided.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
         '404':
-          description: When the category with the given id does not exist.
+          description: Category with the given id does not exist.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
         '410':
-          description: When the category with the given id is already retired.
+          description: Category with the given id is already retired.
           content:
             application/json:
               schema:
@@ -877,10 +920,3 @@ components:
             format: int64
           nullable: true
       additionalProperties: false
-tags:
-  - name: Inventory
-    description: Manage the inventory.
-  - name: Orders
-    description: Create and manage customer orders.
-  - name: Tags
-    description: Create and manage tags.
