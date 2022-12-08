@@ -29,7 +29,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Tag.Response'
         '400':
-          description: When invalid parameters are provided.
+          description: Invalid parameters are provided.
           content:
             application/json:
               schema:
@@ -228,7 +228,7 @@ paths:
         '204':
           description: No Content.
         '400':
-          description: When invalid parameters are provided.
+          description: Invalid parameters are provided.
           content:
             application/json:
               schema:
@@ -241,7 +241,7 @@ paths:
       summary: Get all categories.
       responses:
         '200':
-          description: When all the categories have been returned.
+          description: All the categories have been returned.
           content:
             application/json:
               schema:
@@ -266,13 +266,13 @@ paths:
               $ref: '#/components/schemas/Category.Request'
       responses:
         '201':
-          description: When the category has been created.
+          description: The category has been created.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Inventory.Category.Response'
         '400':
-          description: When invalid parameters are provided.
+          description: Invalid parameters are provided.
           content:
             application/json:
               schema:
@@ -297,6 +297,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Inventory.Category.Response'
+        '400':
+          description: Invalid parameters are provided.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
         '404':
           description: Category with the given id does not exist
           content:
@@ -329,7 +335,7 @@ paths:
               $ref: '#/components/schemas/Category.Request'
       responses:
         '200':
-          description: When the category has been updated.
+          description: The category has been updated.
           content:
             application/json:
               schema:
@@ -394,13 +400,19 @@ paths:
             format: int64
       responses:
         '200':
-          description: When all the products have been returned.
+          description: All the products have been returned.
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/Inventory.Product.Response'
+        '400':
+          description: Invalid parameters are provided.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
         '404':
           description: Category with the given id does not exist.
           content:
@@ -414,7 +426,7 @@ paths:
       summary: Get all orders.
       responses:
         '200':
-          description: When all the orders have been returned.
+          description: All the orders have been returned.
           content:
             application/json:
               schema:
@@ -439,13 +451,13 @@ paths:
               $ref: '#/components/schemas/Order.Request'
       responses:
         '201':
-          description: When the order has been created.
+          description: The order has been created.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Orders.Order.Response'
         '400':
-          description: When invalid parameters are provided.
+          description: Invalid parameters are provided.
           content:
             application/json:
               schema:
@@ -465,13 +477,13 @@ paths:
             format: int64
       responses:
         '200':
-          description: When the order with the provided id has been found.
+          description: The order with the provided id has been found.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Orders.Order.Response'
         '404':
-          description: When the order with the given id does not exist
+          description: The order with the given id does not exist
           content:
             application/json:
               schema:
@@ -502,19 +514,19 @@ paths:
               $ref: '#/components/schemas/Order.Request'
       responses:
         '200':
-          description: When the order has been updated.
+          description: The order has been updated.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Orders.Order.Response'
         '400':
-          description: When invalid parameters are provided.
+          description: Invalid parameters are provided.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
         '404':
-          description: When the order with the given id does not exist.
+          description: The order with the given id does not exist.
           content:
             application/json:
               schema:
@@ -522,7 +534,7 @@ paths:
     delete:
       tags:
         - Orders
-      summary: Cancel an existind order.
+      summary: Cancel an existing order.
       parameters:
         - name: id
           in: path
@@ -535,13 +547,13 @@ paths:
         '204':
           description: No Content.
         '400':
-          description: When invalid parameters are provided.
+          description: Invalid parameters are provided.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
         '404':
-          description: When the order with the given id does not exist.
+          description: The order with the given id does not exist.
           content:
             application/json:
               schema:
@@ -553,7 +565,7 @@ paths:
       summary: Get all products.
       responses:
         '200':
-          description: When all the products have been returned.
+          description: All the products have been returned.
           content:
             application/json:
               schema:
@@ -578,13 +590,13 @@ paths:
               $ref: '#/components/schemas/Product.Request'
       responses:
         '201':
-          description: When the product has been created.
+          description: The product has been created.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Inventory.Product.Response'
         '400':
-          description: When invalid parameters are provided.
+          description: Invalid parameters are provided.
           content:
             application/json:
               schema:
@@ -604,11 +616,17 @@ paths:
             format: int64
       responses:
         '200':
-          description: When the product with the provided id has been found.
+          description: The product with the provided id has been found.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Inventory.Product.Response'
+        '400':
+          description: Invalid parameter is provided.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
         '404':
           description: When the product with the given id does not exist
           content:
@@ -641,19 +659,19 @@ paths:
               $ref: '#/components/schemas/Product.Request'
       responses:
         '200':
-          description: When the product has been updated.
+          description: The product has been updated.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Inventory.Product.Response'
         '400':
-          description: When invalid parameters are provided.
+          description: Invalid parameters are provided.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
         '404':
-          description: When the product with the given id does not exist.
+          description: The product with the given id does not exist.
           content:
             application/json:
               schema:
@@ -673,14 +691,20 @@ paths:
       responses:
         '204':
           description: No Content.
+        '400':
+          description: Invalid parameter is provided.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
         '404':
-          description: When the product with the given id does not exist.
+          description: The product with the given id does not exist.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
         '410':
-          description: When the product with the given id is already retired.
+          description: The product with the given id is already retired.
           content:
             application/json:
               schema:
