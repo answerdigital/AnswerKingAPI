@@ -156,6 +156,12 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/Inventory.Product.Response'
+        '404':
+          description: Tag with the given id does not exist.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
 
   /api/tags/{id}/products{productId}:
     put:
@@ -189,6 +195,12 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Inventory.Product.Response'
+        '404':
+          description: Tag with the given id does not exist.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
 
     delete:
       tags:
@@ -390,7 +402,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/Inventory.Product.Response'
         '404':
-          description: When the category with the given id does not exist.
+          description: Category with the given id does not exist.
           content:
             application/json:
               schema:
