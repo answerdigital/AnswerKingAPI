@@ -3,6 +3,182 @@ info:
   title: Answer King API
   version: v1
 paths:
+  /api/tags:
+    post:
+      tags:
+        - Tags
+      summary: Create Tag.
+      operationId: craeteTag
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Tag.Request'
+      responses:
+        '201':
+          description: Tag created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tag.Response'
+        '400':
+          description: When invalid parameters are provided.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'        
+    get:
+      tags:
+        - Tags
+      summary:  List All tags.
+      operationId: listAllTags
+      responses:
+        '200':
+          description:  OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Tag.Response'
+  /api/tags/{id}:
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    get:
+      tags:
+        - Tags
+      summary: View Tag.
+      operationId: viewTag
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tag.Response'
+    put:
+      tags:
+        - Tags
+      summary: Modify Tag.
+      operationId:  modifyTag
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Tag.Request'
+      responses:
+        '200':
+          description:  OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tag.Response'
+    delete:
+      tags:
+        - Tags
+      summary:  Delete Tag.
+      operationId:  deleteTag
+      responses:
+        '204':
+          description:  No Content
+
+  /api/tags/{id}/products:
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    get:
+      tags:
+        - Tags
+      summary:  List  Products For Tag.
+      operationId:  viewProductsForTag
+      responses:
+        '200':
+          description:  OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Inventory.Product.Response'
+
+  /api/tags/{id}/products{productId}:
+    put:
+      tags:
+        - Tags
+      summary:  Assign tag to products.
+      operationId:  assignTagToProducts
+      parameters:
+        - schema:
+            type: integer
+            format: int64
+          name: id
+          in: path
+          required: true
+        - schema:
+            type: array
+            items:
+              type: integer
+            minItems: 1
+          name: productId
+          in: path
+          required: true
+          style: matrix
+          explode: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Inventory.Product.Response'
+
+    delete:
+      tags:
+        - Tags
+      summary: Assign Tag To Products.
+      operationId:  removeTagFromProducts
+      parameters:
+        - schema:
+            type: integer
+            format: int64
+          name: id
+          in: path
+          required: true
+        - schema:
+            type: array
+            items:
+              type: integer
+            minItems: 1
+          name: productId
+          in: path
+          required: true
+          style: matrix
+          explode: true
+      responses:
+        '204':
+          description: No Content.
+        '400':
+          description: When invalid parameters are provided.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+
   /api/categories:
     get:
       tags:
@@ -129,7 +305,7 @@ paths:
             format: int64
       responses:
         '204':
-          description: No Content.          
+          description: No Content.
         '400':
           description: When invalid parameters are provided.
           content:
@@ -302,7 +478,7 @@ paths:
             format: int64
       responses:
         '204':
-          description: No Content.          
+          description: No Content.
         '400':
           description: When invalid parameters are provided.
           content:
@@ -441,7 +617,7 @@ paths:
             format: int64
       responses:
         '204':
-          description: No Content.          
+          description: No Content.
         '404':
           description: When the product with the given id does not exist.
           content:
@@ -456,6 +632,21 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
 components:
   schemas:
+    Tag.Request:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+    Tag.Response:
+      allOf:
+        - $ref: '#/components/schemas/Tag.Request'
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
     Category.Request:
       type: object
       properties:
@@ -691,3 +882,5 @@ tags:
     description: Manage the inventory.
   - name: Orders
     description: Create and manage customer orders.
+  - name: Tags
+    description: Create and manage tags.
