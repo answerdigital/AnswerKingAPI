@@ -33,7 +33,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ProblemDetails'        
+                $ref: '#/components/schemas/ProblemDetails'
     get:
       tags:
         - Tags
@@ -70,6 +70,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Tag.Response'
+        '400':
+          description: Invalid parameters are provided.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
         '404':
           description: Tag with the given id does not exist
           content:
@@ -156,6 +162,12 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/Inventory.Product.Response'
+        '400':
+          description: Invalid parameters are provided.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
         '404':
           description: Tag with the given id does not exist.
           content:
