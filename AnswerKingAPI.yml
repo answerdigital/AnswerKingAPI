@@ -174,30 +174,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
-
-  /api/tags/{id}/products/{productId}:
     put:
       tags:
         - Tags
       summary:  Assign tag to products.
       operationId:  assignTagToProducts
-      parameters:
-        - schema:
-            type: integer
-            format: int64
-          name: id
-          in: path
-          required: true
-        - schema:
-            type: array
-            items:
-              type: integer
-            minItems: 1
-          name: productId
-          in: path
-          required: true
-          style: simple
-          explode: false
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: integer
+              minItems: 1
       responses:
         '200':
           description: OK
@@ -213,29 +203,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
-
     delete:
       tags:
         - Tags
       summary: Remove Tag From Products.
       operationId:  removeTagFromProducts
-      parameters:
-        - schema:
-            type: integer
-            format: int64
-          name: id
-          in: path
-          required: true
-        - schema:
-            type: array
-            items:
-              type: integer
-            minItems: 1
-          name: productId
-          in: path
-          required: true
-          style: matrix
-          explode: true
       responses:
         '204':
           description: No Content.
