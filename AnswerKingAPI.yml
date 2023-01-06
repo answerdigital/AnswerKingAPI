@@ -15,7 +15,7 @@ paths:
       tags:
         - Tags
       summary: Create Tag.
-      operationId: craeteTag
+      operationId: createTag
       requestBody:
         content:
           application/json:
@@ -37,11 +37,11 @@ paths:
     get:
       tags:
         - Tags
-      summary:  List All tags.
+      summary: List All tags.
       operationId: listAllTags
       responses:
         '200':
-          description:  OK
+          description: OK
           content:
             application/json:
               schema:
@@ -148,7 +148,7 @@ paths:
     get:
       tags:
         - Tags
-      summary:  List  Products For Tag.
+      summary: List  Products For Tag.
       operationId:  viewProductsForTag
       responses:
         '200':
@@ -180,7 +180,6 @@ paths:
       summary:  Assign tag to products.
       operationId:  assignTagToProducts
       requestBody:
-        description: ''
         content:
           application/json:
             schema:
