@@ -679,12 +679,9 @@ components:
         price:
           type: number
           format: double
-        categories:
-          type: array
-          items:
-            type: integer
-            format: int64
-          nullable: true
+        category:
+          type: integer
+          format: int64
       additionalProperties: false
 tags:
   - name: Inventory
