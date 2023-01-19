@@ -679,7 +679,7 @@ components:
         price:
           type: number
           format: double
-        category:
+        categoryId:
           type: integer
           format: int64
       additionalProperties: false
