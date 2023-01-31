@@ -138,85 +138,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
 
-  /api/tags/{id}/products:
-    parameters:
-      - schema:
-          type: string
-        name: id
-        in: path
-        required: true
-    get:
-      tags:
-        - Tags
-      summary: List  Products For Tag.
-      operationId:  viewProductsForTag
-      responses:
-        '200':
-          description:  OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  items:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/Inventory.Product.Response'
-        '400':
-          description: Invalid parameters are provided.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-        '404':
-          description: Tag with the given id does not exist.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-    put:
-      tags:
-        - Tags
-      summary:  Assign tag to products.
-      operationId:  assignTagToProducts
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: array
-              items:
-                type: integer
-              minItems: 1
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Inventory.Product.Response'
-        '404':
-          description: Tag with the given id does not exist.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-    delete:
-      tags:
-        - Tags
-      summary: Remove Tag From Products.
-      operationId:  removeTagFromProducts
-      responses:
-        '204':
-          description: No Content.
-        '400':
-          description: Invalid parameters are provided.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-
   /api/categories:
     get:
       tags:
@@ -701,6 +622,11 @@ components:
           type: string
         description:
           type: string
+        products:
+          type: array
+          items:
+            type: integer
+            format: int64
     Tag.Response:
       allOf:
         - $ref: '#/components/schemas/Tag.Request'
