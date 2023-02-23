@@ -34,6 +34,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: Product with the given id does not exist
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '410':
+          description: Product with the given id is retired.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'                 
     get:
       tags:
         - Tags
@@ -45,12 +57,9 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  items:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/Tag.Response'
+                type: array
+                items:
+                  $ref: '#/components/schemas/Tag.Response'
   /api/tags/{id}:
     parameters:
       - schema:
@@ -82,6 +91,37 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
+    post:
+      tags:
+        - Tags
+      summary: Unretire a retired Tag.
+      parameters:
+        - name: id
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '201':
+          description: The tag has been unretired.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tag.Response'
+        '400':
+          description: Invalid parameters are provided or Tag is not retired.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: Tag does not exist.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'                 
     put:
       tags:
         - Tags
@@ -181,6 +221,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: Product with the given id does not exist
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '410':
+          description: Product with the given id is retired.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'                 
   /api/categories/{id}:
     get:
       tags:
@@ -213,6 +265,37 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
+    post:
+      tags:
+        - Inventory
+      summary: Unretire a retired category.
+      parameters:
+        - name: id
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '201':
+          description: The category has been unretired.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Inventory.Category.Response'
+        '400':
+          description: Invalid parameters are provided or Category is not retired.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: Category does not exist.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'                
     put:
       tags:
         - Inventory
@@ -505,6 +588,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: Category or Tag with the given id does not exist
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '410':
+          description: Category or Tag with the given id is retired.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'                  
   /api/products/{id}:
     get:
       tags:
@@ -537,6 +632,37 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
+    post:
+      tags:
+        - Inventory
+      summary: Unretire a retired Product.
+      parameters:
+        - name: id
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '201':
+          description: The product has been unretired.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Inventory.Product.Response'
+        '400':
+          description: Invalid parameters are provided or Product is not retired.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: Product does not exist.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'                
     put:
       tags:
         - Inventory
