@@ -105,7 +105,7 @@ paths:
             format: int64
       responses:
         '201':
-          description: The tag has been unretired.
+          description: Tag has been unretired.
           content:
             application/json:
               schema:
@@ -134,7 +134,7 @@ paths:
               $ref: '#/components/schemas/Tag.Request'
       responses:
         '200':
-          description: The Tag has been updated.
+          description: Tag has been updated.
           content:
             application/json:
               schema:
@@ -147,6 +147,12 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
         '404':
           description: Tag with the given id does not exist.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '410':
+          description: Tag or product(s) with the given id is retired.
           content:
             application/json:
               schema:
@@ -210,7 +216,7 @@ paths:
               $ref: '#/components/schemas/Category.Request'
       responses:
         '201':
-          description: The category has been created.
+          description: Category has been created.
           content:
             application/json:
               schema:
@@ -279,7 +285,7 @@ paths:
             format: int64
       responses:
         '201':
-          description: The category has been unretired.
+          description: Category has been unretired.
           content:
             application/json:
               schema:
@@ -322,7 +328,7 @@ paths:
               $ref: '#/components/schemas/Category.Request'
       responses:
         '200':
-          description: The category has been updated.
+          description: Category has been updated.
           content:
             application/json:
               schema:
@@ -334,7 +340,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
         '404':
-          description: Category with the given id does not exist.
+          description: Category or Products with the given id does not exist.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '410':
+          description: Category or Product(s) with the given id is retired.
           content:
             application/json:
               schema:
@@ -438,7 +450,7 @@ paths:
               $ref: '#/components/schemas/Order.Request'
       responses:
         '201':
-          description: The order has been created.
+          description: Order has been created.
           content:
             application/json:
               schema:
@@ -464,13 +476,13 @@ paths:
             format: int64
       responses:
         '200':
-          description: The order with the provided id has been found.
+          description: Order with the provided id has been found.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Orders.Order.Response'
         '404':
-          description: The order with the given id does not exist
+          description: Order with the given id does not exist.
           content:
             application/json:
               schema:
@@ -501,7 +513,7 @@ paths:
               $ref: '#/components/schemas/Order.Request'
       responses:
         '200':
-          description: The order has been updated.
+          description: Order has been updated.
           content:
             application/json:
               schema:
@@ -513,7 +525,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
         '404':
-          description: The order with the given id does not exist.
+          description: Order or products with the given id does not exist.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '410':
+          description: Product(s) with the given id is retired.
           content:
             application/json:
               schema:
@@ -540,7 +558,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
         '404':
-          description: The order with the given id does not exist.
+          description: Order with the given id does not exist.
           content:
             application/json:
               schema:
@@ -552,7 +570,7 @@ paths:
       summary: Get all products.
       responses:
         '200':
-          description: All the products have been returned.
+          description: All products have been returned.
           content:
             application/json:
               schema:
@@ -577,7 +595,7 @@ paths:
               $ref: '#/components/schemas/Product.Request'
       responses:
         '201':
-          description: The product has been created.
+          description: Product has been created.
           content:
             application/json:
               schema:
@@ -615,7 +633,7 @@ paths:
             format: int64
       responses:
         '200':
-          description: The product with the provided id has been found.
+          description: Product with the provided id has been found.
           content:
             application/json:
               schema:
@@ -627,7 +645,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
         '404':
-          description: When the product with the given id does not exist
+          description: Product with the given id does not exist.
           content:
             application/json:
               schema:
@@ -646,7 +664,7 @@ paths:
             format: int64
       responses:
         '201':
-          description: The product has been unretired.
+          description: Product has been unretired.
           content:
             application/json:
               schema:
@@ -689,7 +707,7 @@ paths:
               $ref: '#/components/schemas/Product.Request'
       responses:
         '200':
-          description: The product has been updated.
+          description: Product has been updated.
           content:
             application/json:
               schema:
@@ -701,7 +719,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
         '404':
-          description: The product with the given id does not exist.
+          description: Product with the given id does not exist.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '410':
+          description: Product or tag(s) with the given id is retired.
           content:
             application/json:
               schema:
@@ -728,13 +752,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
         '404':
-          description: The product with the given id does not exist.
+          description: Product with the given id does not exist.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
         '410':
-          description: The product with the given id is already retired.
+          description: Product with the given id is already retired.
           content:
             application/json:
               schema:
